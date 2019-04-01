@@ -226,4 +226,13 @@ class RotateLineCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotateLineCircleView {
+            val view : RotateLineCircleView = RotateLineCircleView(activity)
+            activity.setContentView(view)
+            return view 
+        }
+    }
 }
