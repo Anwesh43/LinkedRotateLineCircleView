@@ -202,4 +202,26 @@ class RotateLineCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RotateLineCircleView) {
+
+        private val rlc : RotateLineCircle = RotateLineCircle(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            rlc.draw(canvas, paint)
+            animator.animate {
+                rlc.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
